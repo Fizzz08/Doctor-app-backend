@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="5862c733-5360-4738-bcad-c8a69c95fa6f" name="Changes" comment="Restructured dockerfiles updated">
       <change beforePath="$PROJECT_DIR$" beforeDir="false" afterPath="$PROJECT_DIR$" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.github/workflows/docker-build.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/docker-build.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
