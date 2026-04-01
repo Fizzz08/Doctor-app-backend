@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile Page</title>
+  <link rel="stylesheet" href="../static/css/profile.css">
+  <link th:rel="stylesheet" th:href="@{css/home.css}">
+  <link th:rel="stylesheet" th:href="@{css/profile.css}">
+  <script th:src="@{js/profile.js}"defer></script>
+  <script th:src="@{js/homeValidate.js}" defer></script>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Montserrat&family=Poppins&display=swap" rel="stylesheet">
+</head>
+<body>
+<!-- Header -->
+<header class="app-header">
+  <div class="logo-section">
+    <img th:src="@{/image/logo2.png}" alt="App Logo" class="logo">
+    <span class="app-name">Chikitsa</span>
+  </div>
+
+  <div class="profile-dropdown">
+    <div class="contain">
+      <img th:src="@{/image/profile.jpg}" alt="Profile Image" class="profile-img" id="profileImg">
+      <span class="welcome-message">Welcome, User</span>
+    </div>
+    <div class="dropdown-content" id="dropdownMenu">
+      <div class="dropdown-header">
+        <img th:src="@{/image/profile.jpg}" alt="Profile Image" class="dropdown-profile-img">
+        <span class="welcome-message" style="color:black">Welcome, User</span>
+      </div>
+      <a href="profile">Profile</a>
+      <a href="Home" class="active">Home</a>
+      <a href="recentApp">Recent Appointments</a>
+      <a href="#settings">Settings</a>
+      <a href="#" id="logoutButton">Logout</a>
+    </div>
+  </div>
+</header>
+
+<!-- Profile Content -->
+<main>
+  <div class="container-profile">
+    <h2 class="profile-title">Profile</h2>
+    <div class="profile-sidebar">
+      <div class="profile-image-section">
+        <img th:src="@{/image/profile.jpg}" alt="Profile Picture" class="profile-picture" id="profilePicture">
+        <input type="file" id="profileUpload" accept="image/*" hidden>
+        <button class="btn-upload" onclick="document.getElementById('profileUpload').click()">
+          Change Photo
+        </button>
+      </div>
+      <div class="quick-info">
+        <h3 id="userFullName"></h3>
+        <p id="Email"></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="profile-content">
+    <div class="form-actions">
+      <button type="button" class="btn-edit" id="editButton">Edit Profile</button>
+      <button type="submit" class="btn-save" id="saveButton" hidden>Save Changes</button>
+    </div>
+    <form id="profileForm" action="/save-profile" method="POST">
+      <div class="form-row">
+        <div class="form-group">
+          <label>First Name</label>
+          <input type="text" name="firstName" value="" readonly>
+        </div>
+        <div class="form-group">
+          <label>Last Name</label>
+          <input type="text" name="lastName" value="" readonly>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" id="emailId" name="email" readonly>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Gender</label>
+          <select name="gender" disabled>
+            <option value="MALE">Male</option>
+            <option value="FEMALE">Female</option>
+            <option value="OTHER">Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Date of Birth</label>
+          <input type="date" name="dob" value="1980-01-01" readonly>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Address</label>
+        <textarea name="address" rows="3" readonly>123 Health Street, Bangalore</textarea>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Phone Number</label>
+          <input type="tel" name="phone" value="+91 98765 43210" readonly>
+        </div>
+        <div class="form-group">
+          <label>Emergency Contact</label>
+          <input type="tel" name="emergencyContact" value="+91 98765 43211" readonly>
+        </div>
+      </div>
+
+
+    </form>
+  </div>
+
+</main>
+
+<!-- Footer (Same as other pages) -->
+<footer class="app-footer">
+  <p>&copy; 2024 Chikitsa App. All rights reserved.</p>
+  <p>Contact us: support@Chikitsa.com | Phone: +91 12-345-6789</p>
+</footer>
+
+
+
+</body>
+</html>

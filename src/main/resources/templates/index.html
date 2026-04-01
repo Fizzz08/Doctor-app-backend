@@ -1,0 +1,53 @@
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign-up Form</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" href="../static/css/style.css">
+    <script th:src="@{/js/validate.js}" defer></script>
+    <script src="../static/js/validate.js" defer></script>
+</head>
+<body class="gradient-custom-3">
+<!-- Success message box -->
+<div id="success-message" class="successMessageBox"></div>
+
+<div class="container gradient-custom-4">
+    <h2>Create an account</h2>
+    <form id="myForm" action="/register" method="post" th:object="${user}">
+
+        <div class="form-group">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" name="name" th:field="*{name}" required>
+        </div>
+
+        <div class="form-group">
+            <label for="email">Your Email</label>
+            <input type="email" id="email" name="email" th:field="*{email}" required>
+            <span id="email-error" style="color: red; display: none;"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" th:field="*{password}" required>
+            <span id="password-error" style="color: red; display: none;"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="confirmPassword">Repeat your password</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" th:field="*{confirmPassword}" required>
+            <span id="confirm-password-error" style="color: red; display: none;"></span>
+        </div>
+
+        <div class="form-group1">
+            <input type="checkbox" id="terms" required>
+            <label for="terms">I agree to the <a href="#">Terms of Service</a></label>
+        </div>
+
+        <button type="submit" id="registerButton" disabled>Register</button>
+
+        <p>Already have an account? <a href="/">Login here</a></p>
+    </form>
+</div>
+
+</body>
+</html>

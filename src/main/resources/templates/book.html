@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Available Doctors</title>
+    <link rel="stylesheet" href="../static/css/book.css">
+    <link th:rel="stylesheet" th:href="@{css/home.css}">
+    <link th:rel="stylesheet" th:href="@{css/book.css}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script th:src="@{js/homeValidate.js}" defer></script>
+    <script th:src="@{js/book.js}" defer></script>
+</head>
+<body>
+
+<div id="successMessageBox" class="message-box">
+    Appointment booked successfully for <span id="successDate"></span> at <span id="successTime"></span>!
+</div>
+
+<!-- Header -->
+<header class="app-header">
+    <div class="logo-section">
+        <img th:src="@{/image/logo2.png}" alt="App Logo" class="logo">
+        <span class="app-name">Chikitsa</span>
+    </div>
+
+    <div class="profile-dropdown">
+        <div class="contain">
+            <img th:src="@{/image/profile.jpg}" alt="Profile Image" class="profile-img" id="profileImg">
+            <span class="welcome-message">Welcome, User</span>
+        </div>
+        <div class="dropdown-content" id="dropdownMenu">
+            <div class="dropdown-header">
+                <img th:src="@{/image/profile.jpg}" alt="Profile Image" class="dropdown-profile-img">
+                <span class="welcome-message" style="color:black">Welcome, User</span>
+            </div>
+            <a href="profile">Profile</a>
+            <a href="Home" class="active">Home</a>
+            <a href="recentApp">Recent Appointments</a>
+            <a href="#settings">Settings</a>
+            <a href="#" id="logoutButton">Logout</a>
+        </div>
+    </div>
+</header>
+
+
+<main>
+    <div class="heading"></div>
+
+        <div id="doctorsList">
+            <div id="message"></div>
+        </div>
+
+    <!-- Booking container -->
+    <div id="bookingModal" class="modal hidden">
+        <div class="modal-content">
+            <!-- Doctor's Name and Available Days -->
+            <h3 id="modalDoctorName">Doctor's Name</h3>
+
+            <!-- Calendar Input -->
+            <div id="calendarContainer">
+<!--                <label for="datePicker">Select a Date:</label>-->
+                <input type="date" id="datePicker" placeholder="Select a date">
+            </div>
+
+            <!-- Time Slots Section -->
+            <div id="timeSlotsContainer" class="hidden">
+                <label>Select a Time Slot</label>
+                <div id="timeGrid" class="grid-container">
+                    <!-- Time slots will be dynamically inserted here -->
+                </div>
+            </div>
+
+            <!-- Error Feedback Section -->
+            <div id="errorFeedback" class="hidden">
+                <p>Error: Unable to process your request. Please try again.</p>
+            </div>
+
+            <!-- Booking and Close Buttons -->
+            <button id="bookingBtn" onclick="confirmBooking()">Book Appointment</button>
+            <div id="loadingSpinner" class="spinner hidden"></div>
+            <button onclick="closeModal()">Close</button>
+        </div>
+    </div>
+</main>
+
+
+
+<!-- Footer -->
+<footer class="app-footer">
+    <p>&copy; 2024 Chikitsa App. All rights reserved.</p>
+    <p>Contact us: support@Chikitsa.com | Phone: +91 12-345-6789</p>
+</footer>
+
+</body>
+</html>

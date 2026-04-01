@@ -1,0 +1,9 @@
+main/resources/application.properties
+app.log
+main/webapp
+/target/
+*.log
+*.gz
+*.class
+.env
+src/main/resources/notification-*.json
