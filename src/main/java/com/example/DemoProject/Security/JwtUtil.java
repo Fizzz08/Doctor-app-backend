@@ -1,7 +1,7 @@
 package com.example.DemoProject.Security;
 
 import com.example.DemoProject.Entity.User;
-import com.example.DemoProject.repository.UserRepository;
+import com.example.DemoProject.user.repository.UserRepository;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;

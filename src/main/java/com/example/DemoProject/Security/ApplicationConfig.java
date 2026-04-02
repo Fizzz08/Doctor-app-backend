@@ -1,6 +1,6 @@
 package com.example.DemoProject.Security;
 
-import com.example.DemoProject.repository.UserRepository;
+import com.example.DemoProject.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

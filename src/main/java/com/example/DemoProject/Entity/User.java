@@ -1,6 +1,7 @@
 package com.example.DemoProject.Entity;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -14,22 +15,25 @@ import java.util.Collection;
 import java.util.List;
 
 
+@Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
 @Builder
-@Table(name = "user", uniqueConstraints = @UniqueConstraint(columnNames = "email_id"))
+@Table(name = "user")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class User implements UserDetails {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     private String name;
 
     @Email(message = "Please provide a valid email address.")
     @NotBlank(message = "Email is required.")
+    @Column(unique = true, nullable = false)
     private String email;
 
     @NotBlank(message = "Password is required.")
@@ -42,11 +46,14 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Doctor doctor;
+
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Profile profile;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JsonManagedReference
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<Appointment> appointments;
 
     @Override
@@ -58,5 +65,5 @@ public class User implements UserDetails {
     public String getUsername() {
         return email;
     }
-    
+
 }

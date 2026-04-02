@@ -24,16 +24,18 @@ public class Doctor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @OneToOne(fetch = FetchType.LAZY)
+    @JsonIgnore
+    @JoinColumn(name = "user_id", nullable = false, unique = true)
+    private User user;
+
     @NotBlank(message = "name is required")
     private String name;
 
-    @NotBlank(message = "location is required")
     private String location;
 
-    @NotBlank(message = "specialization is required")
     private String specialization;
 
-    @NotBlank(message = "available_days is required")
     private String availableDays;
 
     @Pattern(regexp = "(?i)(1[0-2]|0?[1-9]):[0-5][0-9] (AM|PM) - (1[0-2]|0?[1-9]):[0-5][0-9] (AM|PM)",
@@ -47,8 +49,11 @@ public class Doctor {
 
     private String image;
 
-    @Enumerated(EnumType.STRING)
-    private Role role;
+    @Column(name = "slot_duration")
+    private int slotDuration;
+
+    @Column(nullable = false)
+    private boolean listed = false;
 
     @OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL, fetch = FetchType.EAGER,orphanRemoval = true)
     @JsonManagedReference

@@ -57,7 +57,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         String userEmail;
 
         try {
-            // ✅ Try to extract username from token
+            //Try to extract username from token
             userEmail = jwtUtil.extractUsername(jwt);
             System.out.println("Extracted Username from Token: " + userEmail);
 
@@ -89,13 +89,13 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                  io.jsonwebtoken.SignatureException |
                  IllegalArgumentException e) {
 
-            // ✅ Handle bad tokens gracefully: return 401 Unauthorized
+            //Handle bad tokens gracefully: return 401 Unauthorized
             System.err.println("JWT Error: " + e.getMessage());
 
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
             response.setContentType("application/json");
             response.getWriter().write("{\"error\": \"Invalid or expired JWT token.\"}");
-            return;  // 🔁 Stop the filter chain here
+            return;
         }
 
         filterChain.doFilter(request, response);

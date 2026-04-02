@@ -2,6 +2,7 @@ package com.example.DemoProject.Entity;
 
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -16,16 +17,27 @@ import java.util.Random;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name="appointment")
+@Table(
+        name = "appointment",
+        uniqueConstraints = {
+                @UniqueConstraint(
+                        name = "uk_doctor_date_time",
+                        columnNames = {
+                                "doctor_id",
+                                "appointment_date",
+                                "time_of_appointment"
+                        }
+                )
+        }
+)
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Appointment {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Ensure ID is auto-generated
     private Long id;
 
-    @ManyToOne(optional = true,fetch = FetchType.EAGER)
+    @ManyToOne(optional = true, fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
-    @JsonBackReference
     private User user;
 
     @NotBlank
